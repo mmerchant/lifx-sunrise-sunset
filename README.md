@@ -16,3 +16,7 @@ If there is a correction made, it will notify you via SMS using Flowroute's API.
 
 ### Attributions:
 - Sunrise-Sunset [http://sunrise-sunset.org/]
+
+### TODO:
+- Tests
+- Exception handling
