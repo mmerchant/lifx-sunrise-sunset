@@ -13,18 +13,15 @@ kms = boto3.client('kms')
 
 KMS_ENCRYPTED_KEYS = ("")
 
-LIFX_TOKEN = json.loads(
+
+SECRET = json.loads(
     kms.decrypt(
         CiphertextBlob=b64decode(
-            KMS_ENCRYPTED_KEYS))['Plaintext'])["LIFX_TOKEN"]
-FLOWROUTE_ACCESS_KEY = json.loads(
-    kms.decrypt(
-        CiphertextBlob=b64decode(
-            KMS_ENCRYPTED_KEYS))['Plaintext'])["FLOWROUTE_ACCESS_KEY"]
-FLOWROUTE_SECRET_KEY = json.loads(
-    kms.decrypt(
-        CiphertextBlob=b64decode(
-            KMS_ENCRYPTED_KEYS))['Plaintext'])["FLOWROUTE_SECRET_KEY"]
+            KMS_ENCRYPTED_KEYS))['Plaintext'])
+
+LIFX_TOKEN = SECRET["LIFX_TOKEN"]
+FLOWROUTE_ACCESS_KEY = SECRET["FLOWROUTE_ACCESS_KEY"]
+FLOWROUTE_SECRET_KEY = SECRET["FLOWROUTE_SECRET_KEY"]
 
 LOCATION = {
     "SEATTLE": ["47.6177135", "-122.2993792"]
@@ -113,7 +110,7 @@ def _toggle_lights(lights, mode):
 
 def lambda_handler(event, context):
     current_ts = arrow.get()
-    if SUNSET > current_ts < SUNRISE:
+    if SUNSET > current_ts <= SUNRISE:
         _toggle_lights(LIGHTS, mode="on")
     else:
         _toggle_lights(LIGHTS, mode="off")
