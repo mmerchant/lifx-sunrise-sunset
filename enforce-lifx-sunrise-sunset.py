@@ -110,7 +110,7 @@ def _toggle_lights(lights, mode):
 
 def lambda_handler(event, context):
     current_ts = arrow.get()
-    if SUNSET > current_ts <= SUNRISE:
+    if SUNRISE <= current_ts >= SUNSET:
         _toggle_lights(LIGHTS, mode="on")
     else:
         _toggle_lights(LIGHTS, mode="off")
