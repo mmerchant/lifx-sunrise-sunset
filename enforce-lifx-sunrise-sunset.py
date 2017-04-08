@@ -24,7 +24,7 @@ FLOWROUTE_ACCESS_KEY = SECRET["FLOWROUTE_ACCESS_KEY"]
 FLOWROUTE_SECRET_KEY = SECRET["FLOWROUTE_SECRET_KEY"]
 
 LOCATION = {
-    "SEATTLE": ["47.6177135", "-122.2993792"]
+    "IRVINE": ["33.6694649", "-117.8231107"]
 }
 DESTINATION_NUMBER = ""
 FLOWROUTE_DID = ""
@@ -48,8 +48,8 @@ def _list_lights():
 
 
 def _calculate_sunrise_sunset():
-    lon = LOCATION["SEATTLE"][1]
-    lat = LOCATION["SEATTLE"][0]
+    lon = LOCATION["IRVINE"][1]
+    lat = LOCATION["IRVINE"][0]
     SUNRISE_SUNSET_ENDPOINT = ("http://api.sunrise-sunset.org"
                                "/json?lat={}&lng={}"
                                "&today&formatted=0").format(lat, lon)
@@ -81,7 +81,6 @@ def _notify_sms(bulb, status):
         content=txt
     )
     controller.create_message(msg)
-    print(txt)
 
 
 def _toggle_lights(lights, mode):
