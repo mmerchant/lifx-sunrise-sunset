@@ -1,3 +1,4 @@
-requests
 arrow
+requests
+simplejson
 git+https://github.com/flowroute/flowroute-messaging-python.git#egg=flowroute-messaging-python

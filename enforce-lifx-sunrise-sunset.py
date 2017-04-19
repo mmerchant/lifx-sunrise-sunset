@@ -1,10 +1,10 @@
 # coding: utf-8
 from base64 import b64decode
-import simplejson as json
 
 import arrow
 import boto3
 import requests
+import simplejson as json
 
 from FlowrouteMessagingLib.Models.Message import Message
 from FlowrouteMessagingLib.Controllers.APIController import APIController
