@@ -69,18 +69,18 @@ SUNRISE, SUNSET = _calculate_sunrise_sunset()
 
 
 def _notify_sms(bulb, status):
+    msg = "Oops! Took care of {} light. It is now {}".format(
+            bulb, status)
     controller = APIController(
         username=FLOWROUTE_ACCESS_KEY,
         password=FLOWROUTE_SECRET_KEY
     )
-    txt = "Oops! Took care of {} light. It is now {}".format(
-            bulb, status)
-    msg = Message(
+    sms_msg = Message(
         to=DESTINATION_NUMBER,
         from_=FLOWROUTE_DID,
-        content=txt
+        content=msg
     )
-    controller.create_message(msg)
+    controller.create_message(sms_msg)
 
 
 def _toggle_lights(lights, mode):
